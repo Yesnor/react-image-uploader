@@ -17,10 +17,6 @@ function UploadForm() {
   };
   return (
     <div className="container w-50 p-5" style={{ border: "1px solid grey" }}>
-      <div className="container text-center mb-5">
-        <h3>Upload your image</h3>
-      </div>
-
       <div className="container">
         <Formik
           initialValues={{ file: null }}
@@ -45,6 +41,27 @@ function UploadForm() {
           {({ values, handleSubmit, setFieldValue, isSubmitting }) => {
             return (
               <form onSubmit={handleSubmit}>
+                <div className="container text-center mb-5">
+                  {values.file || state.files.length > 0 ? (
+                    <h3>
+                      <span
+                        className="material-icons p-1"
+                        style={{
+                          background: "green",
+                          borderRadius: "50%",
+                          color: "white",
+                          fontSize: "1.5rem",
+                        }}
+                      >
+                        done
+                      </span>
+                      {"  "}
+                      Image uploaded
+                    </h3>
+                  ) : (
+                    <h3>Upload your image</h3>
+                  )}
+                </div>
                 <div className="form-group">
                   <Dropzone />
                   {isSubmitting ? (
