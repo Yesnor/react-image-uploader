@@ -16,8 +16,11 @@ function UploadForm() {
     a.remove();
   };
   return (
-    <div className="container w-50 p-5" style={{ border: "1px solid grey" }}>
-      <div className="container">
+    <div
+      className="container w-50 p-5"
+      style={{ border: "1px solid grey", minWidth: "400px" }}
+    >
+      <div className="row">
         <Formik
           initialValues={{ file: null }}
           onSubmit={(values, { setSubmitting }) => {
