@@ -17,8 +17,8 @@ function UploadForm() {
   };
   return (
     <div
-      className="container w-50 p-5"
-      style={{ border: "1px solid grey", minWidth: "400px" }}
+      className="container p-5"
+      style={{ border: "1px solid grey", minWidth: "370px", maxWidth: "550px" }}
     >
       <div className="row">
         <Formik
