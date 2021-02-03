@@ -66,7 +66,7 @@ function UploadForm() {
                   )}
                 </div>
                 <div className="form-group">
-                  <Dropzone />
+                  <Dropzone onChange />
                   {isSubmitting ? (
                     <h3 className="text-center">
                       Uploading...
@@ -90,9 +90,9 @@ function UploadForm() {
                   />
                   {state.files.length > 0 ? (
                     <div className="d-flex justify-content-center align-items-center flex-wrap">
-                      {state.files.map((file, index) => (
-                        <Thumb key={file + index} file={file} />
-                      ))}
+                      {state.files.map((file, index) => {
+                        return <Thumb key={file + index} file={file} />;
+                      })}
                     </div>
                   ) : (
                     <Thumb file={values.file} />
