@@ -25,17 +25,17 @@ function UploadForm() {
           initialValues={{ file: null }}
           onSubmit={(values, { setSubmitting }) => {
             setSubmitting(false);
-            alert(
-              JSON.stringify(
-                {
-                  fileName: values.file.name,
-                  type: values.file.type,
-                  size: `${values.file.size} bytes`,
-                },
-                null,
-                2
-              )
-            );
+            // alert(
+            //   JSON.stringify(
+            //     {
+            //       fileName: values.file.name,
+            //       type: values.file.type,
+            //       size: `${values.file.size} bytes`,
+            //     },
+            //     null,
+            //     2
+            //   )
+            // );
           }}
           validationSchema={yup.object().shape({
             file: yup.mixed().required(),
