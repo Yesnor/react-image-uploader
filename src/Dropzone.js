@@ -8,12 +8,10 @@ export default function MyDropzone() {
   const onDrop = useCallback((acceptedFiles) => {
     acceptedFiles.forEach((file) => {
       const reader = new FileReader();
-
       reader.onabort = () => console.log("file reading was aborted");
       reader.onerror = () => console.log("file reading has failed");
       reader.onload = () => {
         const binaryStr = reader.result;
-
         fetch(binaryStr).then((res) => {
           res.arrayBuffer().then((buf) => {
             const _file = new File([buf], "image_data_url.jpg", {
@@ -26,13 +24,16 @@ export default function MyDropzone() {
           });
         });
       };
-      // reader.readAsArrayBuffer(file);
       reader.readAsDataURL(file);
     });
+
     // eslint-disable-next-line
   }, []);
 
-  const { getRootProps, getInputProps } = useDropzone({ onDrop });
+  const { getRootProps, getInputProps } = useDropzone({
+    onDrop,
+    accept: "image/*",
+  });
 
   return (
     <div
@@ -40,7 +41,7 @@ export default function MyDropzone() {
       style={{ border: "1px dashed grey", height: "150px" }}
       {...getRootProps()}
     >
-      <input {...getInputProps()} />
+      <input className="inputRef" {...getInputProps()} />
       <p className="text-center align-middle">
         Drag 'n' drop some files here, or click to select files
       </p>

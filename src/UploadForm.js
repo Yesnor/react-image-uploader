@@ -16,23 +16,26 @@ function UploadForm() {
     a.remove();
   };
   return (
-    <div className="container w-50 p-5" style={{ border: "1px solid grey" }}>
-      <div className="container">
+    <div
+      className="container p-5"
+      style={{ border: "1px solid grey", minWidth: "370px", maxWidth: "550px" }}
+    >
+      <div className="row">
         <Formik
           initialValues={{ file: null }}
           onSubmit={(values, { setSubmitting }) => {
             setSubmitting(false);
-            alert(
-              JSON.stringify(
-                {
-                  fileName: values.file.name,
-                  type: values.file.type,
-                  size: `${values.file.size} bytes`,
-                },
-                null,
-                2
-              )
-            );
+            // alert(
+            //   JSON.stringify(
+            //     {
+            //       fileName: values.file.name,
+            //       type: values.file.type,
+            //       size: `${values.file.size} bytes`,
+            //     },
+            //     null,
+            //     2
+            //   )
+            // );
           }}
           validationSchema={yup.object().shape({
             file: yup.mixed().required(),
@@ -63,7 +66,7 @@ function UploadForm() {
                   )}
                 </div>
                 <div className="form-group">
-                  <Dropzone />
+                  <Dropzone onChange />
                   {isSubmitting ? (
                     <h3 className="text-center">
                       Uploading...
@@ -87,9 +90,9 @@ function UploadForm() {
                   />
                   {state.files.length > 0 ? (
                     <div className="d-flex justify-content-center align-items-center flex-wrap">
-                      {state.files.map((file, index) => (
-                        <Thumb key={file + index} file={file} />
-                      ))}
+                      {state.files.map((file, index) => {
+                        return <Thumb key={file + index} file={file} />;
+                      })}
                     </div>
                   ) : (
                     <Thumb file={values.file} />
